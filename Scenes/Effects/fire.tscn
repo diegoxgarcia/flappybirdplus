@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dow6sr82geluc"]
+
+[ext_resource type="Script" path="res://Scenes/Effects/fire.gd" id="1_2yl6h"]
+
+[sub_resource type="Curve" id="Curve_70oas"]
+_data = [Vector2(0.0484331, 0.965342), 0.0, 0.0, 0, 0, Vector2(0.980057, 0.221764), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vwde2"]
+offsets = PackedFloat32Array(0, 0.34471, 0.549488, 0.750853, 1)
+colors = PackedColorArray(0.980392, 0, 0, 1, 0.792157, 0.109804, 0.0313726, 1, 0.909804, 0.52549, 0.145098, 1, 0.956863, 0.839216, 0.0823529, 0.482353, 1, 1, 1, 0)
+
+[node name="fire" type="Node2D"]
+script = ExtResource("1_2yl6h")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 2000
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector2(0, -600)
+radial_accel_min = -50.0
+radial_accel_max = -40.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_70oas")
+color_ramp = SubResource("Gradient_vwde2")

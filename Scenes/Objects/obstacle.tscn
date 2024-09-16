@@ -1,0 +1,136 @@
+[gd_scene load_steps=8 format=3 uid="uid://blf2yx2vuj3jp"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/obstacle.gd" id="1_ea26f"]
+[ext_resource type="Texture2D" uid="uid://bcdspfodcufqf" path="res://flappy-bird-assets/sprites/pipe-green.png" id="1_m8dbu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvfbq"]
+size = Vector2(107, 1113)
+
+[sub_resource type="Animation" id="Animation_6fn3k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 650)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tube2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -680)]
+}
+
+[sub_resource type="Animation" id="Animation_x3bb4"]
+resource_name = "shake_tube"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.133333, 0.2, 0.266667, 0.3, 0.366667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 650), Vector2(20, 650), Vector2(0, 650), Vector2(-20, 650), Vector2(0, 650), Vector2(-20, 650), Vector2(0, 650), Vector2(20, 650), Vector2(0, 650)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tube2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.133333, 0.2, 0.266667, 0.3, 0.366667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -680), Vector2(20, -680), Vector2(0, -680), Vector2(-20, -680), Vector2(0, -680), Vector2(-20, -680), Vector2(0, -680), Vector2(20, -680), Vector2(0, -680)]
+}
+
+[sub_resource type="Animation" id="Animation_jkm65"]
+resource_name = "up_and_down"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tube2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -580), Vector2(0, -630), Vector2(0, -680), Vector2(0, -730), Vector2(0, -680)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tube:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 750), Vector2(0, 700), Vector2(0, 650), Vector2(0, 600), Vector2(0, 650)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b8axm"]
+_data = {
+"RESET": SubResource("Animation_6fn3k"),
+"shake_tube": SubResource("Animation_x3bb4"),
+"up_and_down": SubResource("Animation_jkm65")
+}
+
+[node name="Obstacle" type="Node2D"]
+position = Vector2(0, 640)
+script = ExtResource("1_ea26f")
+
+[node name="Tube2" type="Area2D" parent="."]
+position = Vector2(0, -680)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 64
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Tube2"]
+scale = Vector2(2.243, 3.5)
+texture = ExtResource("1_m8dbu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tube2"]
+shape = SubResource("RectangleShape2D_tvfbq")
+
+[node name="Tube" type="Area2D" parent="."]
+position = Vector2(0, 650)
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Tube"]
+scale = Vector2(2.056, 3.5)
+texture = ExtResource("1_m8dbu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tube"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_tvfbq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b8axm")
+}
+
+[connection signal="body_entered" from="Tube2" to="." method="_on_tube_body_entered"]
+[connection signal="body_entered" from="Tube" to="." method="_on_tube_body_entered"]

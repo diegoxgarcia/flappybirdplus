@@ -16,8 +16,8 @@ var upgrade_difficult_emitted = false
 @onready var ui_game = $UIGame
 @onready var die_audio_stream_player = $DieAudioStreamPlayer
 @onready var point_audio_stream_player = $PointAudioStreamPlayer
-@onready var bkgr_sprite_2d = $ParallaxBackground/Background/BkgrSprite2D
-@onready var parallax_background = $ParallaxBackground
+@onready var bkgr_sprite_2d = $Background2D/BkgrSprite2D
+@onready var background_2d = $Background2D
 
 func _ready():
 	ui_game.hide()
@@ -52,7 +52,7 @@ func _on_update_score(score):
 func _upgrade_difficult():
 	bkgr_sprite_2d.texture = BACKGROUND_NIGHT
 	velocity_obs_difficult = 550
-	parallax_background.speed = 400
+	background_2d.speed = 400
 	pipe = PIPE_RED
 	upgrade_difficult_emitted = true
 		

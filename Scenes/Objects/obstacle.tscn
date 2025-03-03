@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://blf2yx2vuj3jp"]
 
-[ext_resource type="Script" path="res://Scenes/Objects/obstacle.gd" id="1_ea26f"]
+[ext_resource type="Script" uid="uid://fllf34fpyij8" path="res://Scenes/Objects/obstacle.gd" id="1_ea26f"]
 [ext_resource type="Texture2D" uid="uid://bcdspfodcufqf" path="res://flappy-bird-assets/sprites/pipe-green.png" id="1_m8dbu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvfbq"]
@@ -91,9 +91,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b8axm"]
 _data = {
-"RESET": SubResource("Animation_6fn3k"),
-"shake_tube": SubResource("Animation_x3bb4"),
-"up_and_down": SubResource("Animation_jkm65")
+&"RESET": SubResource("Animation_6fn3k"),
+&"shake_tube": SubResource("Animation_x3bb4"),
+&"up_and_down": SubResource("Animation_jkm65")
 }
 
 [node name="Obstacle" type="Node2D"]
@@ -129,7 +129,7 @@ shape = SubResource("RectangleShape2D_tvfbq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_b8axm")
+&"": SubResource("AnimationLibrary_b8axm")
 }
 
 [connection signal="body_entered" from="Tube2" to="." method="_on_tube_body_entered"]

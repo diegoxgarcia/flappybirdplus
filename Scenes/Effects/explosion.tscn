@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://duhy20mm7cebp"]
 
 [sub_resource type="Curve" id="Curve_m4yle"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -30,7 +30,7 @@ self_modulate = Color(0.907572, 0.0705036, 6.73831e-07, 1)
 emitting = false
 amount = 60
 sub_emitter = NodePath(".")
-process_material = SubResource("ParticleProcessMaterial_5xvvc")
 lifetime = 5.0
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_5xvvc")

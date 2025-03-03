@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dpwoll4882fc4"]
 
-[ext_resource type="Script" path="res://Scenes/Components/damager.gd" id="1_5vf0s"]
+[ext_resource type="Script" uid="uid://d4nmkj0e6rxrw" path="res://Scenes/Components/damager.gd" id="1_5vf0s"]
 
 [node name="Damager" type="Area2D"]
 rotation = 3.14159
